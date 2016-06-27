@@ -35,7 +35,7 @@ let formatCases = cases => {
     cases.forEach(c => {
         elements.push({
             title: c.get("Subject"),
-            subtitle: c.get("Status") + " - " + c.get("Description")
+            subtitle: "Estado del Caso: " + c.get("Status") + " -  Descripción: " + c.get("Description")
         })
     });
     return {
