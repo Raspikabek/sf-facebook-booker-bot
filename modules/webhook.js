@@ -27,19 +27,19 @@ let processText = (text, sender)  => {
     match = text.match(/help/i);
     if (match) {
         sendMessage({text:
-            `You can ask me things like:
-    Search account Acme
-    Search Acme in accounts
-    Search contact Smith
-    What are my top 3 opportunities?
+            `Puedes preguntarme cosas como:
+    Busca la cuenta Acme
+    Busca Acme en cuentas
+    Busca el contacto Raspi
+    ¿Cuales son mis 3 mejores oportunidades?
         `}, sender);
         return;
     }
 
-    match = text.match(/search account (.*)/i);
+    match = text.match(/busca la cuenta (.*)/i);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
-            sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
+            sendMessage({text: `Estas son las cuentas que he encontrado al buscar "${match[1]}":`}, sender);
             sendMessage(formatter.formatAccounts(accounts), sender)
         });
         return;
@@ -54,28 +54,28 @@ let processText = (text, sender)  => {
         return;
     }
 
-    match = text.match(/search (.*) in accounts/i);
+    match = text.match(/busca (.*) en cuentas/i);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
-            sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
+            sendMessage({text: `Estas son las cuentas que he encontrado al buscar "${match[1]}":`}, sender);
             sendMessage(formatter.formatAccounts(accounts), sender)
         });
         return;
     }
 
-    match = text.match(/search contact (.*)/i);
+    match = text.match(/busca el contacto (.*)/i);
     if (match) {
         salesforce.findContact(match[1]).then(contacts => {
-            sendMessage({text: `Here are the contacts I found matching "${match[1]}":`}, sender);
+            sendMessage({text: `Estos son los contactos que he encontrado al buscar "${match[1]}":`}, sender);
             sendMessage(formatter.formatContacts(contacts), sender)
         });
         return;
     }
 
-    match = text.match(/top (.*) opportunities/i);
+    match = text.match(/(.*) mejores oportunidades/i);
     if (match) {
         salesforce.getTopOpportunities(match[1]).then(opportunities => {
-            sendMessage({text: `Here are your top ${match[1]} opportunities:`}, sender);
+            sendMessage({text: `Aquí están tus ${match[1]} mejores oportunidades:`}, sender);
             sendMessage(formatter.formatOpportunities(opportunities), sender)
         });
         return;
@@ -101,12 +101,12 @@ let handlePost = (req, res) => {
         } else if (event.postback) {
             let payload = event.postback.payload.split(",");
             if (payload[0] === "view_contacts") {
-                sendMessage({text: "OK, looking for your contacts at " + payload[2] + "..."}, sender);
+                sendMessage({text: "OK, buscando los contactos de " + payload[2] + "..."}, sender);
                 salesforce.findContactsByAccount(payload[1]).then(contacts => sendMessage(formatter.formatContacts(contacts), sender));
             } else if (payload[0] === "close_won") {
-                sendMessage({text: `OK, I closed the opportunity "${payload[2]}" as "Close Won". Way to go Christophe!`}, sender);
+                sendMessage({text: `OK, he cerrado la oportunidad "${payload[2]}" como "Cerrada Ganada". ¡Hora de hacer negocios!`}, sender);
             } else if (payload[0] === "close_lost") {
-                sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
+                sendMessage({text: `Mm... siento oir eso, he cerrado la oportunidad "${payload[2]}" como "Cerrada Perdida".`}, sender);
             }
         }
     }
