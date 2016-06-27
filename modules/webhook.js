@@ -24,7 +24,19 @@ let sendMessage = (message, recipient) => {
 
 let processText = (text, sender)  => {
     let match;
-    match = text.match(/help/i);
+    match = text.match(/ayudarme/i);
+    if (match) {
+        sendMessage({text:
+            `Puedes preguntarme cosas como:
+    Busca la cuenta Acme
+    Busca Acme en cuentas
+    Busca el contacto Raspi
+    ¿Cuales son mis 3 mejores oportunidades?
+        `}, sender);
+        return;
+    }
+
+    match = text.match(/ayuda/i);
     if (match) {
         sendMessage({text:
             `Puedes preguntarme cosas como:
