@@ -82,6 +82,15 @@ let processText = (text, sender)  => {
         });
         return;
     }
+
+    match = text.match(/buscar la cuenta (.*)/i);
+    if (match) {
+        salesforce.findAccount(match[1]).then(accounts => {
+            sendMessage({text: `Estas son las cuentas que he encontrado al buscar "${match[1]}":`}, sender);
+            sendMessage(formatter.formatAccounts(accounts), sender)
+        });
+        return;
+    }
 	
 	match = text.match(/Busca el caso (.*)/i);
     if (match) {
