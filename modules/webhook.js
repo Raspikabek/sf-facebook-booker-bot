@@ -67,6 +67,13 @@ let processText = (text, sender)  => {
         return;
     }
 
+    match = text.match(/hola/i);
+    if (match) {
+        sendMessage({text:
+            `Guau hola! Soy Booker Bot. Si necesitas ayuda tan solo pídemela`}, sender);
+        return;
+    }
+
     match = text.match(/busca la cuenta (.*)/i);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
