@@ -9,12 +9,12 @@ let formatAccounts = accounts => {
             "image_url": account.get("Picture_URL__c"),
             "buttons": [{
                 "type":"postback",
-                "title":"View Contacts",
+                "title":"Ver Contactos",
                 "payload": "view_contacts," + account.getId() + "," + account.get("Name")
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + account.getId(),
-                "title": "Open in Salesforce"
+                "title": "Abrir en Salesforce"
             },
 ]
         })
@@ -49,6 +49,25 @@ let formatCases = cases => {
     };
 };
 
+let formatNotes = notes => {
+    let elements = [];
+    notes.forEach(c => {
+        elements.push({
+            title: c.get("Title"),
+            subtitle: c.get("Body")
+        })
+    });
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    };
+};
+
 let formatContacts = contacts => {
     let elements = [];
     contacts.forEach(contact => {
@@ -59,13 +78,13 @@ let formatContacts = contacts => {
             "buttons": [
                 {
                     "type": "postback",
-                    "title": "View Notes",
+                    "title": "Ver Notas",
                     "payload": "view_notes," + contact.getId() + "," + contact.get("Name")
                 },
                 {
                     "type": "web_url",
                     "url": "https://login.salesforce.com/" + contact.getId(),
-                    "title": "Open in Salesforce"
+                    "title": "Abrir en Salesforce"
                 }]
         })
     });
@@ -118,5 +137,6 @@ let formatOpportunities = opportunities => {
 
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
+exports.formatNotes = formatNotes;
 exports.formatCases = formatCases;
 exports.formatOpportunities = formatOpportunities;

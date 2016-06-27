@@ -88,6 +88,22 @@ let findContactsByAccount = accountId => {
 
 };
 
+let findNotesByContact = contactId => {
+
+    return new Promise((resolve, reject) => {
+        let q = "SELECT Id, Title, Body FROM Note WHERE ParentId = '" + contactId + "' LIMIT 1";
+        org.query({query: q}, (err, resp) => {
+            if (err) {
+                reject("An error as occurred");
+            } else if (resp.records && resp.records.length>0) {
+                let notes = resp.records;
+                resolve(notes);
+            }
+        });
+    });
+
+};
+
 let getTopOpportunities = count => {
 
     count = count || 5;
@@ -113,4 +129,5 @@ exports.findAccount = findAccount;
 exports.findContact = findContact;
 exports.findCases = findCases;
 exports.findContactsByAccount = findContactsByAccount;
+exports.findNotesByContact = findNotesByContact;
 exports.getTopOpportunities = getTopOpportunities;
