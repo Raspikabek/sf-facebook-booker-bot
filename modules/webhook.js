@@ -36,6 +36,18 @@ let processText = (text, sender)  => {
         return;
     }
 
+    match = text.match(/ayudame/i);
+    if (match) {
+        sendMessage({text:
+            `Puedes preguntarme cosas como:
+    Busca la cuenta Acme
+    Busca Acme en cuentas
+    Busca el contacto Raspi
+    ¿Cuales son mis 3 mejores oportunidades?
+        `}, sender);
+        return;
+    }
+
     match = text.match(/ayuda/i);
     if (match) {
         sendMessage({text:
@@ -45,6 +57,13 @@ let processText = (text, sender)  => {
     Busca el contacto Raspi
     ¿Cuales son mis 3 mejores oportunidades?
         `}, sender);
+        return;
+    }
+
+    match = text.match(/gracias/i);
+    if (match) {
+        sendMessage({text:
+            `De nada, y recuerda... Que la Force te acompañe`}, sender);
         return;
     }
 
