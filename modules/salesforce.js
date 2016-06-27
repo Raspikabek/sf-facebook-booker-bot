@@ -44,7 +44,7 @@ let findAccount = name => {
 let findContact = name => {
 
     return new Promise((resolve, reject) => {
-        let q = "SELECT Id, Name, Title, Account.Name, Phone, MobilePhone, Email FROM Contact WHERE Name LIKE '%" + name + "%' LIMIT 5";
+        let q = "SELECT Id, Name, Title, Account.Name, Phone, MobilePhone, Email, Picture_URL__c FROM Contact WHERE Name LIKE '%" + name + "%' LIMIT 5";
         org.query({query: q}, (err, resp) => {
             if (err) {
                 reject("An error as occurred");
