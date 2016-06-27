@@ -44,6 +44,15 @@ let processText = (text, sender)  => {
         });
         return;
     }
+	
+	match = text.match(/Busca el caso (.*)/i);
+    if (match) {
+        salesforce.findCase(match[1]).then(cases => {
+            sendMessage({text: `Aquí está el caso: "${match[1]}":`}, sender);
+            sendMessage(formatter.formatCases(cases), sender)
+        });
+        return;
+    }
 
     match = text.match(/search (.*) in accounts/i);
     if (match) {

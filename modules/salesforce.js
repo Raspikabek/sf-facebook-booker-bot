@@ -41,6 +41,21 @@ let findAccount = name => {
 
 };
 
+let findCases = name => {
+    return new Promise((resolve, reject) => {
+        let q = "SELECT Id, Subject, Description, Status FROM Case WHERE CaseNumber LIKE '%" + name + "%' LIMIT 2";
+        org.query({query: q}, (err, resp) => {
+            if (err) {
+                reject("An error as occurred");
+            } else if (resp.records && resp.records.length>0) {
+                let cases = resp.records;
+                resolve(cases);
+            }
+        });
+    });
+
+};
+
 let findContact = name => {
 
     return new Promise((resolve, reject) => {
@@ -96,5 +111,6 @@ login();
 exports.org = org;
 exports.findAccount = findAccount;
 exports.findContact = findContact;
+exports.findCases = findCases;
 exports.findContactsByAccount = findContactsByAccount;
 exports.getTopOpportunities = getTopOpportunities;
