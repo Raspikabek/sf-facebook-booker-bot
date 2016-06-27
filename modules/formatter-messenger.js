@@ -32,12 +32,12 @@ let formatAccounts = accounts => {
 
 let formatCases = cases => {
     let elements = [];
-    cases.forEach(case =>
+    cases.forEach(c => {
         elements.push({
-            title: case.get("CaseNumber"),
-            subtitle: case.get("Subject") + ", " + case.get("Status")
+            title: c.get("Subject"),
+            subtitle: c.get("Status") + " - " + c.get("Description")
         })
-    );
+    });
     return {
         "attachment": {
             "type": "template",
