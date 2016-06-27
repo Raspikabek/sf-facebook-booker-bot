@@ -113,10 +113,10 @@ let handlePost = (req, res) => {
         } else if (event.postback) {
             let payload = event.postback.payload.split(",");
             if (payload[0] === "view_contacts") {
-                sendMessage({text: "OK, buscando los contactos de " + payload[2] + "..."}, sender);
+                sendMessage({text: "Ok! Aquí tienes los contactos de " + payload[2] + "..."}, sender);
                 salesforce.findContactsByAccount(payload[1]).then(contacts => sendMessage(formatter.formatContacts(contacts), sender));
             } else if (payload[0] === "view_notes") {
-                sendMessage({text: "Ok, consultando notas del contacto " + payload[2] + "..."},sender);
+                sendMessage({text: "Aquí está la nota de " + payload[2] + "..."},sender);
                 salesforce.findNotesByContact(payload[1]).then(notes => sendMessage(formatter.formatNotes(notes),sender));
             } else if (payload[0] === "close_won") {
                 sendMessage({text: `OK, he cerrado la oportunidad "${payload[2]}" como "Cerrada Ganada". ¡Hora de hacer negocios!`}, sender);
