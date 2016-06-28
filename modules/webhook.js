@@ -127,6 +127,11 @@ let processText = (text, sender)  => {
         });
         return;
     }
+
+    if (!match) {
+        sendMessage({text: `Lo sienot, no te he entendido. Si necesitas ayuda escribe "ayudame".`}, sender);
+        return;
+    }
 };
 
 let handleGet = (req, res) => {
