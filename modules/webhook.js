@@ -129,7 +129,7 @@ let processText = (text, sender)  => {
     }
 
     if (!match) {
-        sendMessage({text: `Lo sienot, no te he entendido. Si necesitas ayuda escribe "ayudame".`}, sender);
+        sendMessage({text: `Lo siento, no te he entendido. Si necesitas ayuda escribe "ayudame".`}, sender);
         return;
     }
 };
