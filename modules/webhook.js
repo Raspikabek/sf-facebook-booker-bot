@@ -60,7 +60,7 @@ let processText = (text, sender)  => {
         return;
     }
 
-    match = text.match(/gracias/i || /hohoho/i);
+    match = text.match(/(gracias|hihihi)/i);
     if (match) {
         sendMessage({text:
             `De nada, y recuerda... Que la Force te acompañe`}, sender);
