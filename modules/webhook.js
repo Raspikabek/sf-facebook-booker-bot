@@ -73,6 +73,13 @@ let processText = (text, sender)  => {
             `Guau hola! Soy Booker Bot. Si necesitas ayuda tan solo pídemela`}, sender);
         return;
     }
+    
+    match = text.match(/mata a (.*)/i);
+    if (match) {
+        sendMessage({text:
+            `Objetivo fijado. Procesando la ejecución de "${match[1]}"...`}, sender);
+        return;
+    }
 
     match = text.match(/busca la cuenta (.*)/i);
     if (match) {
