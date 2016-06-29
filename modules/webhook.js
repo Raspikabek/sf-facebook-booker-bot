@@ -186,9 +186,9 @@ let handlePost = (req, res) => {
                 sendMessage({text: "Just a moment, I'm looking for notes at " + payload[2] + "..."},sender);
                 salesforce.findNotesByContact(payload[1]).then(notes => sendMessage(formatter.formatNotes(notes),sender));
             } else if (payload[0] === "close_won") {
-                sendMessage({text: `OK, he cerrado la oportunidad "${payload[2]}" como "Cerrada Ganada". ¡Hora de hacer negocios!`}, sender);
+                sendMessage({text: `Opportunity "${payload[2]}" closed as "Closed Won". (BETA, didnt update opp)`}, sender);
             } else if (payload[0] === "close_lost") {
-                sendMessage({text: `Mm... siento oir eso, he cerrado la oportunidad "${payload[2]}" como "Cerrada Perdida".`}, sender);
+                sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost". (BETA, didnt update opp)`}, sender);
             }
         }
     }
