@@ -92,7 +92,7 @@ let processText = (text, sender)  => {
         return;
     }
 
-    match = text.match(/(search account (.*)|search the account (.*))/i);
+    match = text.match(/search account (.*)/i);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
