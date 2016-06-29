@@ -24,14 +24,14 @@ let sendMessage = (message, recipient) => {
 
 let processText = (text, sender)  => {
     let match;
-    match = text.match(/ayudarme/i);
+    match = text.match(/help/i);
     if (match) {
         sendMessage({text:
-            `Puedes preguntarme cosas como:
-    Busca la cuenta Acme
-    Busca Acme en cuentas
-    Busca el contacto Raspi
-    ¿Cuales son mis 3 mejores oportunidades?
+            `You can ask me things like:
+    Search account Acme
+    Search Acme in accounts
+    Search contact Louis
+    What are my 3 top opportunities?
         `}, sender);
         return;
     }
@@ -60,7 +60,14 @@ let processText = (text, sender)  => {
         return;
     }
 
-    match = text.match(/gracias/i);
+    match = text.match(/gracias/i, /hohoho/i);
+    if (match) {
+        sendMessage({text:
+            `De nada, y recuerda... Que la Force te acompañe`}, sender);
+        return;
+    }
+
+    match = text.match(/thank you/i);
     if (match) {
         sendMessage({text:
             `De nada, y recuerda... Que la Force te acompañe`}, sender);
