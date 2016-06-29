@@ -9,12 +9,12 @@ let formatAccounts = accounts => {
             "image_url": account.get("Picture_URL__c"),
             "buttons": [{
                 "type":"postback",
-                "title":"Ver Contactos",
+                "title":"View Contacts",
                 "payload": "view_contacts," + account.getId() + "," + account.get("Name")
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + account.getId(),
-                "title": "Abrir en Salesforce"
+                "title": "Open in Salesforce"
             },
 ]
         })
@@ -35,7 +35,7 @@ let formatCases = cases => {
     cases.forEach(c => {
         elements.push({
             title: c.get("Subject"),
-            subtitle: "Estado del Caso: " + c.get("Status") + " -  Descripción: " + c.get("Description")
+            subtitle: "Status: " + c.get("Status") + " -  Description: " + c.get("Description")
         })
     });
     return {
@@ -78,13 +78,13 @@ let formatContacts = contacts => {
             "buttons": [
                 {
                     "type": "postback",
-                    "title": "Ver Notas",
+                    "title": "View Notes",
                     "payload": "view_notes," + contact.getId() + "," + contact.get("Name")
                 },
                 {
                     "type": "web_url",
                     "url": "https://login.salesforce.com/" + contact.getId(),
-                    "title": "Abrir en Salesforce"
+                    "title": "Open in Salesforce"
                 }]
         })
     });
