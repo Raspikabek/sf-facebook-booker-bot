@@ -146,7 +146,7 @@ let processText = (text, sender)  => {
         return;
     }
 
-    match = text.match(/top (.*) opportunities/i);
+    match = text.match(/(.*) top opportunities/i);
     if (match) {
         salesforce.getTopOpportunities(match[1]).then(opportunities => {
             sendMessage({text: `Here are your top ${match[1]} opportunities:`}, sender);
